@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0c1022;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background: #0b0f1d;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .navbar {
+      display: flex;
+    }
+
+    .navbar a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+    }
+
+    .navbar a::after {
+      content: '';
+      width: 0%;
+      height: 2px;
+      background: #00ffff;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+    }
+
+    .home {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 150px 10% 50px;
+      flex-wrap: wrap;
+    }
+
+    .home-content {
+      max-width: 600px;
+    }
+
+    .home-content h1 {
+      font-size: 36px;
+    }
+
+    .home-content h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .home-content h3 {
+      font-size: 28px;
+      margin: 15px 0;
+    }
+
+    .typing {
+      color: #00ffff;
+    }
+
+    .cursor {
+      color: #00ffff;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .home-content p {
+      color: #ccc;
+      font-size: 15px;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .social-icons {
+      margin: 20px 0;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin-right: 15px;
+      color: #00ffff;
+      font-size: 22px;
+      border: 2px solid #00ffff;
+      padding: 10px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #00ffff;
+      color: #0c1022;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #00ffff, #00c2ff);
+      padding: 12px 25px;
+      color: #0c1022;
+      font-weight: 600;
+      border-radius: 30px;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #00c2ff, #00ffff);
+    }
+
+    .home-image .img-glow {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .home-image img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      padding: 80px 10%;
+      background: #0b0f1d;
+      flex-wrap: wrap;
+    }
+
+    .about-image .img-glow {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      padding: 8px;
+      background: linear-gradient(135deg, #411867, #ff00ff);
+      box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .about-content {
+      max-width: 700px;
+    }
+
+    .about-content h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .about-content h2 span {
+      color: #00ffff;
+    }
+
+    .about-content h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .about-content p {
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .about-content .btn {
+      background: linear-gradient(90deg, #00ffff, #00c2ff);
+      color: #0c1022;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .about-content .btn:hover {
+      background: linear-gradient(90deg, #00c2ff, #00ffff);
+    }
+
+    /* Services Section */
+    .services {
+      padding: 80px 20px;
+      background: #0f172a;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #fff;
+    }
+
+    .section-title span {
+      color: #00f7ff;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .service-box {
+      background: #0f172a;
+      padding: 30px 20px;
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #00f7ff40;
+      transition: 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px #00f7ff80;
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      color: #00f7ff;
+      margin-bottom: 15px;
+    }
+
+    .service-box h3 {
+      color: #fff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .service-box p {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      background-color: #0f172a;
+      padding: 80px 20px;
+      color: #fff;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .technical-skills, .professional-skills {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .technical-skills h2, .professional-skills h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      text-decoration: underline;
+    }
+
+    .skill {
+      margin-bottom: 20px;
+    }
+
+    .skill span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .progress-bar {
+      background: #111;
+      height: 8px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar div {
+      height: 100%;
+      background-color: #00f7ff;
+      text-align: right;
+      padding-right: 5px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #000;
+      border-radius: 5px;
+    }
+
+    .circular-skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 8px solid #111;
+      border-top: 8px solid #00f7ff;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .circle span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .circle p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .projects {
+      background-color: #0f172a;
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .projects h2 span {
+      color: #00f7ff;
+    }
+
+    .project-gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+    }
+
+    .contact {
+      background-color: #0f172a;
+      color: #fff;
+      padding: 80px 20px;
+    }
+
+    .contact-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-info h2 {
+      font-size: 2.5rem;
+    }
+
+    .contact-info h2 span {
+      color: #00f7ff;
+    }
+
+    .contact-info h4 {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    .contact-info p {
+      margin: 20px 0;
+      line-height: 1.6;
+      color: #aaa;
+    }
+
+    .contact-details p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    .contact-details i {
+      margin-right: 10px;
+      color: #00f7ff;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      color: #00f7ff;
+      font-size: 1.2rem;
+      margin-right: 15px;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px 15px;
+      background-color: #1e293b;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      resize: none;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      background: linear-gradient(to right, #00f7ff, #00c2cb);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      opacity: 0.9;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .home {
+        padding: 120px 5% 50px;
+      }
+      
+      .home-content {
+        margin-bottom: 50px;
+      }
+      
+      .home-image {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 5%;
+      }
+      
+      .menu-btn {
+        display: block;
+      }
+      
+      .navbar {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        background: #0b0f1d;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transition: 0.5s;
+      }
+      
+      .navbar.active {
+        left: 0;
+      }
+      
+      .navbar a {
+        margin: 10px 0;
+      }
+      
+      .home-content h1 {
+        font-size: 28px;
+      }
+      
+      .home-content h2 {
+        font-size: 36px;
+      }
+      
+      .home-content h3 {
+        font-size: 22px;
+      }
+      
+      .about-content h2 {
+        font-size: 36px;
+      }
+      
+      .about-content h3 {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .home-content h1 {
+        font-size: 24px;
+      }
+      
+      .home-content h2 {
+        font-size: 32px;
+      }
+      
+      .home-content h3 {
+        font-size: 20px;
+      }
+      
+      .home-image .img-glow,
+      .about-image .img-glow {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      color: #0c1022;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Animation for circular skills */
+    @keyframes circle-fill {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(var(--rotation));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">YOUR RESUME.</div>
+    
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section class="home" id="home">
+    <div class="home-content">
+      <h1>Hello, It's Me</h1>
+      <h2>AARTI SHUKLA</h2>
+      <h3>And I'm a <span class="typing">Web Developer</span><span class="cursor">|</span></h3>
+      <p>
+        
+      </p>
+      
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+
+      <a href="#about" class="btn">More About Me</a>
+    </div>
+
+    <div class="home-image">
+      <div class="img-glow">
+        <img src="student.jpg" alt="Profile Photo"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="about" id="about">
+    <div class="about-image">
+      <div class="img-glow">
+        <img src="student.jpg" alt="About Me Photo"/>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <h2>About <span>Me</span></h2>
+      <h3>First Year B.Tech Student!</h3>
+      <p>
+        I'm a first-year student at Sage University, currently in my second semester. I've had an exciting journey so far, diving into the world of programming and web development. In my first semester, I learned the fundamentals of C, C++, Python, JavaScript, and CSS. Now, in my second semester,
+        <br><br>
+        I'm building upon this foundation, exploring more advanced concepts and applications. I'm passionate about technology and eager to continue learning and growing as a developer
+      </p>
+      <a href="#services" class="btn">My Services</a>
+    </div>
+  </section>
+  <section class="services" id="services">
+    <h2 class="section-title">My <span>Services</span></h2>
+    <div class="services-container">
+      <div class="service-box">
+        <i class="fas fa-code service-icon"></i>
+        <h3>UI/UX Design</h3>
+        <p>
+            I'm fascinated by UI design, where creativity meets functionality. Crafting intuitive interfaces that delight users is my goal. I enjoy learning about typography, color theory, and layout principles to create visually appealing designs
+        </p>
+        <a href="#" class="btn">learn more</a>
+      </div>
+      <div class="service-box">
+        <i class="fas fa-crop-alt service-icon"></i>
+        <h3>Web Design</h3>
+        <p>
+            Web design captivates me! I love blending aesthetics with functionality to create engaging online experiences. From responsive layouts to interactive elements, I'm eager to master the art of web design and build websites that captivate users.
+        </p>
+        <a href="#" class="btn">learn more</a>
+      </div>
+      <div class="service-box">
+        <i class="fab fa-apple service-icon"></i>
+        <h3>App Design</h3>
+        <p>
+            App design excites me! I'm passionate about creating seamless, user-friendly experiences for mobile apps. By combining intuitive navigation, visually appealing graphics, and interactive elements, I aim to design apps that make a lasting impact
+        </p>
+        <a href="#" class="btn">learn more</a>
+      </div>
+    </div>
+  </section>
+  <section class="skills" id="skills">
+    <div class="skills-container">
+      <!-- Technical Skills -->
+      <div class="technical-skills">
+        <h2>Technical Skills</h2>
+        <div class="skill">
+          <span><img src="https://img.icons8.com/color/25/html-5.png"/> HTML</span>
+          <div class="progress-bar"><div style="width: 90%">90%</div></div>
+        </div>
+        <div class="skill">
+          <span><img src="https://img.icons8.com/color/25/css3.png"/> CSS</span>
+          <div class="progress-bar"><div style="width: 60%">60%</div></div>
+        </div>
+        <div class="skill">
+          <span><img src="https://img.icons8.com/color/25/javascript.png"/> Javascript</span>
+          <div class="progress-bar"><div style="width: 85%">85%</div></div>
+        </div>
+        <div class="skill">
+          <span><img src="https://img.icons8.com/color/25/python.png"/> Python</span>
+          <div class="progress-bar"><div style="width: 50%">50%</div></div>
+        </div>
+        <div class="skill">
+          <span><img src="https://img.icons8.com/officel/25/react.png"/> React</span>
+          <div class="progress-bar"><div style="width: 75%">75%</div></div>
+        </div>
+      </div>
+  
+      <!-- Professional Skills -->
+      <div class="professional-skills">
+        <h2>Professional Skills</h2>
+        <div class="circular-skills">
+          <div class="circle" data-value="90"><span>90%</span><p>Creativity</p></div>
+          <div class="circle" data-value="65"><span>65%</span><p>Communication</p></div>
+          <div class="circle" data-value="75"><span>75%</span><p>Problem Solving</p></div>
+          <div class="circle" data-value="85"><span>85%</span><p>Teamwork</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="projects" id="projects">
+    <h2><span>Latest</span> Project</h2>
+    <div class="project-gallery">
+      <div class="project-card">
+        <img src="project 1.jpg" alt="UI UX Project">
+      </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="Website Development">
+      </div>
+      <div class="project-card">
+        <img src="insternship project 3.webp" alt="Education App">
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <div class="contact-content">
+      <div class="contact-info">
+        <h2>Contact <span>Me</span></h2>
+        <h4>Let's Work Together</h4>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum nobis possimus tenetur
+          quidem fugit? Dolorum cupiditate deleniti perspiciatis ea soluta repellat dignissimos eum
+          assumenda, iusto quas nulla ullam. Quaerat, maiores!
+        </p>
+        <div class="contact-details">
+          <p><i class="fas fa-paper-plane"></i> contact@gmail.com</p>
+          <p><i class="fas fa-phone-alt"></i> 0123456789</p>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+  
+      <form class="contact-form">
+        <input type="text" placeholder="Enter Your Name" required />
+        <input type="email" placeholder="Enter Your Email" required />
+        <input type="text" placeholder="Enter Your Subject" />
+        <textarea rows="5" placeholder="Enter Your Message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const menuBtn = document.querySelector('.menu-btn');
+      const navbar = document.querySelector('.navbar');
+      
+      menuBtn.addEventListener('click', function() {
+        navbar.classList.toggle('active');
+        menuBtn.querySelector('i').classList.toggle('fa-times');
+      });
+      
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', function() {
+          navbar.classList.remove('active');
+          menuBtn.querySelector('i').classList.remove('fa-times');
+        });
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Typing Effect
+      const typingElement = document.querySelector('.typing');
+      const cursorElement = document.querySelector('.cursor');
+      const professions = ['Web Developer', 'UI/UX Designer', 'Full Stack Developer'];
+      let professionIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let isEnd = false;
+      
+      function type() {
+        const currentProfession = professions[professionIndex];
+        
+        if (isDeleting) {
+          typingElement.textContent = currentProfession.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingElement.textContent = currentProfession.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        
+        if (!isDeleting && charIndex === currentProfession.length) {
+          isEnd = true;
+          isDeleting = true;
+          setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          professionIndex = (professionIndex + 1) % professions.length;
+          setTimeout(type, 500);
+        } else {
+          const typingSpeed = isDeleting ? 100 : 200;
+          setTimeout(type, typingSpeed);
+        }
+      }
+      
+      // Start typing effect after 1 second
+      setTimeout(type, 1000);
+      
+      // Animate circular skills on scroll
+      const circles = document.querySelectorAll('.circle');
+      
+      function animateCircles() {
+        circles.forEach(circle => {
+          const value = parseInt(circle.getAttribute('data-value'));
+          const circumference = 2 * Math.PI * 56; // Radius of the circle
+          const strokeDashoffset = circumference - (value / 100) * circumference;
+          
+          circle.style.setProperty('--rotation', $`{(value / 100) * 360}deg`);
+          circle.style.borderImage = conic-gradient(`#00f7ff ${value}%, #111 ${value}%`);
+          circle.style.borderImageSlice = '1';
+        });
+      }
+      
+      // Scroll to Top Button
+      const scrollTopBtn = document.querySelector('.scroll-top');
+      
+      window.addEventListener('scroll', function() {
+        // Show/hide scroll to top button
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add('active');
+        } else {
+          scrollTopBtn.classList.remove('active');
+        }
+        
+        // Animate circles when they come into view
+        const skillsSection = document.querySelector('.skills');
+        const skillsSectionTop = skillsSection.offsetTop;
+        const skillsSectionHeight = skillsSection.offsetHeight;
+        
+        if (window.pageYOffset > skillsSectionTop - window.innerHeight + 100) {
+          animateCircles();
+        }
+      });
+      
+      scrollTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Form submission
+      const contactForm = document.querySelector('.contact-form');
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Here you would typically send the form data to a server
+        // For demonstration, we'll just show an alert
+        alert('Thank you for your message! I will get back to you soon.');
+        this.reset();
+      });
+      
+      // Initialize animations when page loads
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
