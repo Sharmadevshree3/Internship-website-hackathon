@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Slider</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --primary-color: #01010d;
+            --secondary-color: #020a18;
+            --dark-color: #1a202c;
+            --light-color: #f7fafc;
+            --accent-color: #81e6d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-subheading {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            color: var(--light-color);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        #tranding {
+            padding: 50px 0;
+        }
+
+        .tranding-slider {
+            height: 520px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .swiper-wrapper {
+            align-items: center;
+        }
+
+        .tranding-slide {
+            width: 370px;
+            height: 450px;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--secondary-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tranding-slide:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(249, 249, 249, 0.915);
+        }
+
+        .tranding-slide-img {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .tranding-slide-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tranding-slide:hover .tranding-slide-img img {
+            transform: scale(1.05);
+        }
+
+        .tranding-slide-content {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .internship-price {
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tranding-slide:hover .internship-price {
+            text-shadow: 0 0 10px rgba(129, 230, 217, 0.7);
+        }
+
+        .tranding-slide-content-bottom {
+            margin-top: 20px;
+        }
+
+        .internship-name {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tranding-slide:hover .internship-name {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgb(254, 254, 254);
+        }
+
+        .internship-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .internship-rating span {
+            color: var(--light-color);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating ion-icon {
+            color: var(--primary-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tranding-slide:hover .rating ion-icon {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(129, 230, 217, 0.7);
+        }
+
+        .tranding-slider-control {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-arrow {
+            background: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+        }
+
+        .slider-arrow:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(129, 230, 217, 0.7);
+        }
+
+        .swiper-button-next {
+            right: 30%;
+        }
+
+        .swiper-button-prev {
+            left: 30%;
+        }
+
+        .swiper-pagination {
+            position: relative;
+            width: auto;
+            margin: 0 20px;
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--light-color);
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--primary-color);
+            opacity: 1;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgb(254, 253, 255);
+        }
+
+        @media (max-width: 768px) {
+            .tranding-slide {
+                width: 300px;
+                height: 420px;
+            }
+
+            .tranding-slide-img {
+                height: 200px;
+            }
+
+            .swiper-button-next {
+                right: 25%;
+            }
+
+            .swiper-button-prev {
+                left: 25%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section id="tranding">
+        <div class="container">
+            <h3 class="text-center section-subheading">- COURSES WE OFFER -</h3>
+            <h1 class="text-center section-heading">Top courses</h1>
+        </div>
+        <div class="container">
+            <div class="swiper tranding-slider">
+                <div class="swiper-wrapper">
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="c++ image.jpg">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">C++ Course</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    ACE Academy
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.8</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="content.jpeg">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">Content-Writing</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    UDEMY
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.9</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="ui design.webp">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">UI-UX DESIGN</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    UX Designer
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.7</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="digital marketing.webp">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">DIGITAL MARKETING</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    Marketing and Agency
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.5</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="python.jpg">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">LEARN PYTHON</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    ACE Academy
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.6</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="ai reasearch 2.jpeg">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <h1 class="internship-price">AI TOOLS</h1>
+                            <div class="tranding-slide-content-bottom">
+                                <h2 class="internship-name">
+                                    AI Research Academy
+                                </h2>
+                                <h3 class="internship-rating">
+                                    <span>4.9</span>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                        <ion-icon name="star"></ion-icon>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                </div>
+
+                <div class="tranding-slider-control">
+                    <div class="swiper-button-prev slider-arrow">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next slider-arrow">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var TrandingSlider = new Swiper('.tranding-slider', {
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                loop: true,
+                slidesPerView: 'auto',
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 2.5,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
